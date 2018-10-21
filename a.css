@@ -27,6 +27,25 @@ h1,h2,h3,h4,h5,h6{
   clear: both;
 }
 
+[data-x].animate{
+  animation: slideUp 0.5s;
+}
+[data-x].offset{
+  transform: translateY(30px);
+}
+[data-x]{
+  transform: translateY(0);
+  transition: all 0.5s;
+}
+@keyframes slideUp{
+  0%{
+    transform: translateX(-30px)
+  }
+  100%{
+    transform: translateX(-0px)
+  }
+}
+
 .topNavBar {
   padding: 20px 0;
   position: fixed;
@@ -295,12 +314,18 @@ section.skills .progressBar{
   background: #FAE1E1;
   border-radius: 2px;
   margin: 4px 0 40px;
+  overflow: hidden;
 }
 section.skills .progressBar > .progress{
   width: 50%;
   height: 100%;
   background: #e6686a;
   border-radius: 2px;
+  transform: translateX(0);
+  transition: all 1s;
+}
+section.skills.offset .progressBar > .progress{
+  transform: translateX(-100%);
 }
 
 section.protfolio{
