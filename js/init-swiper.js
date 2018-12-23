@@ -1,12 +1,28 @@
 !function(){
-  var mySwiper = new Swiper('.swiper-container', {
-    loop: true,
-    pagination: {
-      el: '.swiper-pagination',
+  var view = document.querySelector('#mySlides')
+  var controller = {
+    view: null,
+    swiper: null,
+    swiperOptions: {
+      loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }
     },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+    init: function(view) {
+      this.view = view
+      this.initSwiper()
+    },
+    initSwiper: function() {
+      this.swiper = new Swiper(
+        this.view.querySelector('.swiper-container'),
+        this.swiperOptions
+      )
     }
-  })
+  }
+  controller(view)
 }.call()

@@ -1,21 +1,21 @@
 !function(){
-  let aTags = document.querySelectorAll('nav.menu > ul > li > a')
-  function animate(time) {
-    requestAnimationFrame(animate)
-    TWEEN.update(time)
-  }
-  requestAnimationFrame(animate)
-
-  for(let i=0;i<aTags.length;i++){
-    aTags[i].onclick = function(x){
-      x.preventDefault()
-      let a = x.currentTarget
-      // a.href 是被浏览器处理过的
-      // a.getAttribute('href') 写了什么就是什么
-      let href = a.getAttribute('href') // '#siteAbout'
-      let element = document.querySelector(href)
+  var view = document.querySelector('.nav .menu')
+  var controller = {
+    view: null,
+    init: function(view) {
+      this.view = view
+      this.initAnimation()
+      this.bindEvents()
+    },
+    initAnimation: function() {
+      function animate(time) {
+        requestAnimationFrame(animate)
+        TWEEN.update(time)
+      }
+      requestAnimationFrame(animate)
+    },
+    scrollToElement: function(element) {
       let top = element.offsetTop
-
       // let n = 25 // 一共动多少次
       // let t = 500 / n  // 多少时间动一次
       let currentTop = window.scrollY
@@ -42,7 +42,21 @@
           window.scrollTo(0, coords.y)   // 如何更新界面
         })
         .start()
-
+    },
+    bindEvents: function() {
+      this.aTags = this.view.querySelectorAll('nav.menu > ul > li > a')
+      for(let i=0;i<aTags.length;i++){
+        aTags[i].onclick = (x) =>{
+          x.preventDefault()
+          let a = x.currentTarget
+          // a.href 是被浏览器处理过的
+          // a.getAttribute('href') 写了什么就是什么
+          let href = a.getAttribute('href') // '#siteAbout'
+          let element = document.querySelector(href)
+          this.scrollToElement(element)
+        }
+      }
     }
   }
+  controller(view)
 }.call()
