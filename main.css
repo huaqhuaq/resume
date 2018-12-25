@@ -323,7 +323,8 @@ section.protfolio{
   margin-top: 70px;
 }
 section.skills > h2,
-section.protfolio > h2{
+section.protfolio > h2,
+section.message > h2{
   text-align: center;
   color: #3d4451;
   font-size: 34px;
@@ -410,4 +411,16 @@ section.protfolio .swiper-button-next{
 }
 .site-welcome.active{
   display: flex;
+}
+
+
+section.message > ol{
+  max-width: 700px;
+  margin: 0 auto;
+  border-top: 1px solid #ddd;
+  background: #f4f4f4;
+}
+section.message > ol > li{
+  padding: 16px;
+  border-bottom: 1px solid #ececec;
 }
