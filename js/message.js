@@ -30,7 +30,7 @@
     init: function(view, model) {
       this.view = view
       this.model = model
-      
+
       this.messageList = view.querySelector('#message')
       this.form = view.querySelector('form')
       this.model.init()
@@ -55,11 +55,10 @@
         )
     },
     bindEvents: function() {
-      var _this = this
       this.form.addEventListener('submit', function(e) {
         e.preventDefault()
-        _this.saveMessage()
-      })
+        this.saveMessage()
+      }.bind(this))
     },
     saveMessage: function() {
       let myForm = this.form
